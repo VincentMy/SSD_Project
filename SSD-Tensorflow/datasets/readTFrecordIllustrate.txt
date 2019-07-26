@@ -1,0 +1,6 @@
+使用Slim读取TFrecord文件的步骤如下：
+1、设置解码器，一般设置为decoder = slim.tfexample_decoder.TFExampleDecoder(),同时要指定其keys_to_features和items_to_hadnlers两个字典参数。key_to_features这个字典需要和TFrecord
+文件中定义的字典项匹配。items_to_handlers中的关键字可以是任意值，但是它的handler的初始化参数必须要来自于keys_to_features中的关键字。
+2、定义数据集类，一般为dataset=slim.dataset.Dataset():它把datasource、reader、decoder、num_samples等参数封装好。
+3、定义数据集的数据提供者类，一般为provider=slim.dataset_data_provider.DatasetDataProvider(),需要传入的参数：dataset,mun_readers,reader_kwargs,shuffle,num_epochs,common_queue_capacity,
+common_queue_min,record_key,seed,scope等。
